@@ -1,6 +1,6 @@
 "use client"; 
  
-import { useState, useEffect, SetStateAction } from "react";
+import { useState, useEffect } from "react";
 import CardCurso from "@/components/CardCurso";
 
 interface CursoAPI {
@@ -30,7 +30,7 @@ export default function Home() {
                     setErro("Erro ao fazer o fetch.");
                 }
                 const data = await res.json();
-
+                
                 const filteredCursos = data.filter((curso: any) => curso.categoria.includes("Cursos") 
                 || curso.categoria.includes("Curso"));
                 
@@ -78,11 +78,11 @@ hover:text-slate-600">
         </section> 
           
         <div>
-          <span>{erro != null ? "ERRO" : ""}</span>
+          <span>{erro !== null ? erro : ""}</span>
           <span>{carregando ? "Carregando catálogo" : ""}</span>
         </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"> 
-          {cursosBuscaFiltrado.map((curso => (
+          {carregando === false && cursosBuscaFiltrado.map((curso => (
               <CardCurso
                 key={curso.id}
                 id={curso.id}

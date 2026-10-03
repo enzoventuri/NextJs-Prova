@@ -25,7 +25,7 @@ export default function DetalhesCurso({ params }: { params: Promise<{ id: string
     
     const [curso, setCurso] = useState<CursoDetalhe | null>(null);
     const [carregando, setCarregando] = useState<boolean>(true);
-    const [erro, setErro] = useState<string | null>(null);
+    const [erro, setErro] = useState<any>(null);
 
     useEffect(() => {
         let res;
@@ -52,7 +52,10 @@ export default function DetalhesCurso({ params }: { params: Promise<{ id: string
     
     if (carregando) {
         return (
-            <span>Carregando informações...</span>
+            <div className="flex justify-center items-center h-dvh">
+                <span className="text-4xl font-bold">Carregando informações...</span>
+            </div>
+            
         )
     }
 
